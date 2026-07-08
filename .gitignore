@@ -1,0 +1,16 @@
+# SQL Server / local files
+*.bak
+*.trn
+*.mdf
+*.ldf
+
+# VS Code
+.vscode/
+
+# Temporary files
+*.tmp
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
