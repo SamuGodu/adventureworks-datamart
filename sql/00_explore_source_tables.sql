@@ -141,46 +141,46 @@ WHERE soh.SalesOrderID IS NULL;
 -- Check: Null values in SalesOrderHeader
 SELECT 
 	COUNT(*) as total_rows,
-	SUM(CASE WHEN ssoh.SalesOrderID = NULL THEN 1 ELSE 0 END) AS sales_order_id_nulls,
-	SUM(CASE WHEN ssoh.OrderDate = NULL THEN 1 ELSE 0 END) AS order_date_nulls,
-	SUM(CASE WHEN ssoh.CustomerID = NULL THEN 1 ELSE 0 END) AS customer_id_nulls,
-	SUM(CASE WHEN ssoh.TerritoryID = NULL THEN 1 ELSE 0 END) AS territory_id_nulls,
-	SUM(CASE WHEN ssoh.SubTotal = NULL THEN 1 ELSE 0 END) AS subtotal_nulls,
-	SUM(CASE WHEN ssoh.TaxAmt = NULL THEN 1 ELSE 0 END) AS tax_amt_nulls,
-	SUM(CASE WHEN ssoh.Freight = NULL THEN 1 ELSE 0 END) AS freight_nulls,
-	SUM(CASE WHEN ssoh.TotalDue = NULL THEN 1 ELSE 0 END) AS total_due_nulls
+	SUM(CASE WHEN ssoh.SalesOrderID IS NULL THEN 1 ELSE 0 END) AS sales_order_id_nulls,
+	SUM(CASE WHEN ssoh.OrderDate IS NULL THEN 1 ELSE 0 END) AS order_date_nulls,
+	SUM(CASE WHEN ssoh.CustomerID IS NULL THEN 1 ELSE 0 END) AS customer_id_nulls,
+	SUM(CASE WHEN ssoh.TerritoryID IS NULL THEN 1 ELSE 0 END) AS territory_id_nulls,
+	SUM(CASE WHEN ssoh.SubTotal IS NULL THEN 1 ELSE 0 END) AS subtotal_nulls,
+	SUM(CASE WHEN ssoh.TaxAmt IS NULL THEN 1 ELSE 0 END) AS tax_amt_nulls,
+	SUM(CASE WHEN ssoh.Freight IS NULL THEN 1 ELSE 0 END) AS freight_nulls,
+	SUM(CASE WHEN ssoh.TotalDue IS NULL THEN 1 ELSE 0 END) AS total_due_nulls
 FROM Sales.SalesOrderHeader as ssoh;
 
 -- Check: Null values in SalesOrderDetail
 SELECT
 	COUNT(*) as total_rows,
-	SUM(CASE WHEN ssod.SalesOrderID = NULL THEN 1 ELSE 0 END) AS sales_order_id_nulls,
-	SUM(CASE WHEN ssod.SalesOrderDetailID = NULL THEN 1 ELSE 0 END) AS sales_order_detail_id_nulls,
-	SUM(CASE WHEN ssod.OrderQty = NULL THEN 1 ELSE 0 END) AS order_qty_nulls,
-	SUM(CASE WHEN ssod.ProductID = NULL THEN 1 ELSE 0 END) AS product_id_nulls,
-	SUM(CASE WHEN ssod.UnitPrice = NULL THEN 1 ELSE 0 END) AS unit_price_nulls,
-	SUM(CASE WHEN ssod.UnitPriceDiscount = NULL THEN 1 ELSE 0 END) AS unit_price_discount_nulls,
-	SUM(CASE WHEN ssod.LineTotal = NULL THEN 1 ELSE 0 END) AS line_total_nulls
+	SUM(CASE WHEN ssod.SalesOrderID IS NULL THEN 1 ELSE 0 END) AS sales_order_id_nulls,
+	SUM(CASE WHEN ssod.SalesOrderDetailID IS NULL THEN 1 ELSE 0 END) AS sales_order_detail_id_nulls,
+	SUM(CASE WHEN ssod.OrderQty IS NULL THEN 1 ELSE 0 END) AS order_qty_nulls,
+	SUM(CASE WHEN ssod.ProductID IS NULL THEN 1 ELSE 0 END) AS product_id_nulls,
+	SUM(CASE WHEN ssod.UnitPrice IS NULL THEN 1 ELSE 0 END) AS unit_price_nulls,
+	SUM(CASE WHEN ssod.UnitPriceDiscount IS NULL THEN 1 ELSE 0 END) AS unit_price_discount_nulls,
+	SUM(CASE WHEN ssod.LineTotal IS NULL THEN 1 ELSE 0 END) AS line_total_nulls
 FROM Sales.SalesOrderDetail as ssod
 
 -- Check: Null Values in Customer
 SELECT
 	COUNT(*) as total_rows,
-	SUM(CASE WHEN sc.CustomerID = NULL THEN 1 ELSE 0 END) AS customer_id_nulls,
-	SUM(CASE WHEN sc.PersonID = NULL THEN 1 ELSE 0 END) AS person_nulls,
-	SUM(CASE WHEN sc.StoreID = NULL THEN 1 ELSE 0 END) AS store_nulls,
-	SUM(CASE WHEN sc.TerritoryID = NULL THEN 1 ELSE 0 END) AS territory_id_nulls,
-	SUM(CASE WHEN sc.AccountNumber = NULL THEN 1 ELSE 0 END) AS account_number_nulls
-	--SUM(CASE WHEN sc.customer_type = NULL THEN 1 ELSE 0 END) AS customer_type_nulls
+	SUM(CASE WHEN sc.CustomerID IS NULL THEN 1 ELSE 0 END) AS customer_id_nulls,
+	SUM(CASE WHEN sc.PersonID IS NULL THEN 1 ELSE 0 END) AS person_nulls,
+	SUM(CASE WHEN sc.StoreID IS NULL THEN 1 ELSE 0 END) AS store_nulls,
+	SUM(CASE WHEN sc.TerritoryID IS NULL THEN 1 ELSE 0 END) AS territory_id_nulls,
+	SUM(CASE WHEN sc.AccountNumber IS NULL THEN 1 ELSE 0 END) AS account_number_nulls
+	--SUM(CASE WHEN sc.customer_type IS NULL THEN 1 ELSE 0 END) AS customer_type_nulls
 FROM Sales.Customer as sc
 
 -- Check: Null values in Sales Territory
 SELECT
 	COUNT(*) as total_rows,
-	SUM(CASE WHEN sst.TerritoryID = NULL THEN 1 ELSE 0 END) AS territory_id_nulls,
-	SUM(CASE WHEN sst.[Name] = NULL THEN 1 ELSE 0 END) AS name_nulls,
-	SUM(CASE WHEN sst.CountryRegionCode = NULL THEN 1 ELSE 0 END) AS country_region_code_nulls,
-	SUM(CASE WHEN sst.[Group] = NULL THEN 1 ELSE 0 END) AS group_nulls
+	SUM(CASE WHEN sst.TerritoryID IS NULL THEN 1 ELSE 0 END) AS territory_id_nulls,
+	SUM(CASE WHEN sst.[Name] IS NULL THEN 1 ELSE 0 END) AS name_nulls,
+	SUM(CASE WHEN sst.CountryRegionCode IS NULL THEN 1 ELSE 0 END) AS country_region_code_nulls,
+	SUM(CASE WHEN sst.[Group] IS NULL THEN 1 ELSE 0 END) AS group_nulls
 FROM Sales.SalesTerritory AS sst;
 
 -- =========================================================
@@ -197,9 +197,6 @@ FROM Sales.SalesOrderHeader
 -- 10. Sales numeric fields
 -- =========================================================
 
-SELECT TOP 10 *
-FROM Sales.SalesOrderDetail
-
 -- Check: Order Quantity
 
 SELECT
@@ -207,7 +204,7 @@ SELECT
 	MAX(OrderQty) AS max_ordered_qty,
 	MIN(OrderQty) AS min_ordered_qty,
 	AVG(OrderQty) AS avg_ordered_qty,
-	SUM(CASE WHEN OrderQty < 0 THEN 1 ELSE 0 END) as negative_order_qty
+	SUM(CASE WHEN OrderQty < 0 THEN 1 ELSE 0 END) AS negative_order_qty
 FROM Sales.SalesOrderDetail;
 
 -- Check: Unit Price
@@ -217,7 +214,7 @@ SELECT
 	MAX(UnitPrice) AS max_unit_price,
 	MIN(UnitPrice) AS min_unit_price,
 	AVG(UnitPrice) AS avg_unit_price,
-	SUM(CASE WHEN UnitPrice < 0 THEN 1 ELSE 0 END) as negative_unit_price
+	SUM(CASE WHEN UnitPrice < 0 THEN 1 ELSE 0 END) AS negative_unit_price
 FROM Sales.SalesOrderDetail;
 
 -- Check: Unit Price Discount
@@ -227,7 +224,7 @@ SELECT
 	MAX(UnitPriceDiscount) AS max_unit_price_discount,
 	MIN(UnitPriceDiscount) AS min_unit_price_discount,
 	AVG(UnitPriceDiscount) AS avg__unit_price_discount,
-	SUM(CASE WHEN UnitPriceDiscount < 0 THEN 1 ELSE 0 END) as negative_unit_price_discount
+	SUM(CASE WHEN UnitPriceDiscount < 0 THEN 1 ELSE 0 END) AS negative_unit_price_discount
 FROM Sales.SalesOrderDetail
 
 -- Check: Line Total
@@ -237,5 +234,44 @@ SELECT
 	MAX(LineTotal) AS max_line_total,
 	MIN(LineTotal) AS min_line_total,
 	AVG(LineTotal) AS avg_line_total,
-	SUM(CASE WHEN LineTotal < 0 THEN 1 ELSE 0 END) as negative_line_total
-FROM Sales.SalesOrderDetail
+	SUM(CASE WHEN LineTotal < 0 THEN 1 ELSE 0 END) AS negative_line_total
+FROM Sales.SalesOrderDetail;
+
+-- =========================================================
+-- 11. Review customer type logic
+-- =========================================================
+
+SELECT
+	COUNT(*) AS total_rows,
+	SUM(CASE WHEN PersonID IS NOT NULL AND StoreID IS NULL THEN 1 ELSE 0 END) AS individual_customer,
+	SUM(CASE WHEN PersonID IS NULL AND StoreID IS NOT NULL THEN 1 ELSE 0 END) AS store_customer,
+	SUM(CASE WHEN PersonID IS NULL AND StoreID IS NULL THEN 1 ELSE 0 END) AS unkown_customer,
+	SUM(CASE WHEN PersonID IS NOT NULL AND StoreID IS NOT NULL THEN 1 ELSE 0 END) AS both_person_and_store_customer
+FROM Sales.Customer;
+
+-- =========================================================
+-- 12. Review territory values
+-- =========================================================
+
+SELECT TOP 10 *
+FROM Sales.SalesTerritory
+
+SELECT
+	CountryRegionCode,
+	COUNT(*) AS country_region_code_counts
+FROM Sales.SalesTerritory
+GROUP BY CountryRegionCode
+
+SELECT
+	[Group],
+	COUNT(*) AS group_counts
+FROM Sales.SalesTerritory
+GROUP BY [Group]
+
+SELECT
+    TerritoryID,
+    Name AS TerritoryName,
+    CountryRegionCode,
+    [Group] AS TerritoryGroup
+FROM Sales.SalesTerritory
+ORDER BY [Group], CountryRegionCode, Name;
