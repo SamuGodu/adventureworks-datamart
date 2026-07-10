@@ -139,7 +139,6 @@ FROM de_project.stg_sales_order_detail;
 
 -- stg_customer
 -- Create Table
-
 CREATE TABLE de_project.stg_customer
 (
 	CustomerID INT NOT NULL,
@@ -186,3 +185,47 @@ SELECT
 	SUM(CASE WHEN AccountNumber IS NULL THEN 1 ELSE 0 END) AS account_number_nulls
 	--SUM(CASE WHEN customer_type IS NULL THEN 1 ELSE 0 END) AS customer_type_nulls
 FROM de_project.stg_customer;
+
+
+-- stg_sales_territory
+-- Create Table
+CREATE TABLE de_project.stg_sales_territory
+(
+	TerritoryID INT NOT NULL,
+	[Name] NAME NOT NULL,
+	CountryRegionCode NVARCHAR(6) NOT NULL,
+	[Group] NVARCHAR(100) NOT NULL
+);
+GO
+
+-- Insert data into staging table
+INSERT INTO de_project.stg_sales_territory
+(
+	TerritoryID,
+	[Name],
+	CountryRegionCode,
+	[Group]
+)
+SELECT 
+	TerritoryID,
+	[Name],
+	CountryRegionCode,
+	[Group]
+FROM Sales.SalesTerritory;
+GO
+
+-- Validate tables
+-- Row Count
+SELECT COUNT(*) AS row_count_stg
+FROM de_project.stg_sales_territory;
+
+SELECT COUNT(*) AS row_count_src
+FROM Sales.SalesTerritory;
+
+-- Check Nulls
+SELECT
+	COUNT(*) as total_rows,
+	COUNT(TerritoryID) as non_null_territory_id,
+	COUNT(DISTINCT TerritoryID) as distinct_territory_id,
+	COUNT(*) - COUNT(DISTINCT TerritoryID) as duplicate_territory_id
+FROM de_project.stg_sales_territory;
