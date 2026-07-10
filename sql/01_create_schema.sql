@@ -84,3 +84,54 @@ FROM de_project.stg_sales_order_header;
 -- Create Table 
 CREATE TABLE de_project.stg_sales_order_detail
 (
+	SalesOrderID INT NOT NULL,
+	SalesOrderDetailID INT NOT NULL,
+	OrderQty SMALLINT NOT NULL,
+	ProductID INT NOT NULL,
+	UnitPrice MONEY NOT NULL,
+	UnitPriceDiscount MONEY NOT NULL,
+	LineTotal NUMERIC NOT NULL
+);
+GO
+
+-- Insert data into staging table
+INSERT INTO de_project.stg_sales_order_detail
+(
+	SalesOrderID,
+	SalesOrderDetailID,
+	OrderQty,
+	ProductID,
+	UnitPrice,
+	UnitPriceDiscount,
+	LineTotal
+)
+SELECT
+	SalesOrderID,
+	SalesOrderDetailID,
+	OrderQty,
+	ProductID,
+	UnitPrice,
+	UnitPriceDiscount,
+	LineTotal
+FROM Sales.SalesOrderDetail;
+GO
+
+-- Validate tables
+-- Row Count
+SELECT COUNT(*) AS row_count_stg
+FROM de_project.stg_sales_order_detail;
+
+SELECT COUNT(*) AS row_count_src
+FROM Sales.SalesOrderDetail;
+
+-- Check Nulls
+SELECT
+	COUNT(*) as total_rows,
+	SUM(CASE WHEN SalesOrderID IS NULL THEN 1 ELSE 0 END) AS sales_order_id_nulls,
+	SUM(CASE WHEN SalesOrderDetailID IS NULL THEN 1 ELSE 0 END) AS sales_order_detail_id_nulls,
+	SUM(CASE WHEN OrderQty IS NULL THEN 1 ELSE 0 END) AS order_qty_nulls,
+	SUM(CASE WHEN ProductID IS NULL THEN 1 ELSE 0 END) AS product_id_nulls,
+	SUM(CASE WHEN UnitPrice IS NULL THEN 1 ELSE 0 END) AS unit_price_nulls,
+	SUM(CASE WHEN UnitPriceDiscount IS NULL THEN 1 ELSE 0 END) AS unit_price_discount_nulls,
+	SUM(CASE WHEN LineTotal IS NULL THEN 1 ELSE 0 END) AS line_total_nulls
+FROM de_project.stg_sales_order_detail;
