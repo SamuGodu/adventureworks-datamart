@@ -1,3 +1,10 @@
+/*
+STEP 01 - Create schema
+
+Purpose:
+Create and load the staging tables
+*/
+
 USE AdventureWorks2025;
 GO
 
@@ -71,3 +78,9 @@ SELECT
 	SUM(CASE WHEN Freight IS NULL THEN 1 ELSE 0 END) AS freight_nulls,
 	SUM(CASE WHEN TotalDue IS NULL THEN 1 ELSE 0 END) AS total_due_nulls
 FROM de_project.stg_sales_order_header;
+
+
+-- stg_sales_order_detail
+-- Create Table 
+CREATE TABLE de_project.stg_sales_order_detail
+(
