@@ -161,7 +161,7 @@ SELECT
 	SUM(CASE WHEN ssod.UnitPrice IS NULL THEN 1 ELSE 0 END) AS unit_price_nulls,
 	SUM(CASE WHEN ssod.UnitPriceDiscount IS NULL THEN 1 ELSE 0 END) AS unit_price_discount_nulls,
 	SUM(CASE WHEN ssod.LineTotal IS NULL THEN 1 ELSE 0 END) AS line_total_nulls
-FROM Sales.SalesOrderDetail as ssod
+FROM Sales.SalesOrderDetail as ssod;
 
 -- Check: Null Values in Customer
 SELECT
@@ -172,7 +172,7 @@ SELECT
 	SUM(CASE WHEN sc.TerritoryID IS NULL THEN 1 ELSE 0 END) AS territory_id_nulls,
 	SUM(CASE WHEN sc.AccountNumber IS NULL THEN 1 ELSE 0 END) AS account_number_nulls
 	--SUM(CASE WHEN sc.customer_type IS NULL THEN 1 ELSE 0 END) AS customer_type_nulls
-FROM Sales.Customer as sc
+FROM Sales.Customer as sc;
 
 -- Check: Null values in Sales Territory
 SELECT
@@ -253,20 +253,17 @@ FROM Sales.Customer;
 -- 12. Review territory values
 -- =========================================================
 
-SELECT TOP 10 *
-FROM Sales.SalesTerritory
-
 SELECT
 	CountryRegionCode,
 	COUNT(*) AS country_region_code_counts
 FROM Sales.SalesTerritory
-GROUP BY CountryRegionCode
+GROUP BY CountryRegionCode;
 
 SELECT
 	[Group],
 	COUNT(*) AS group_counts
 FROM Sales.SalesTerritory
-GROUP BY [Group]
+GROUP BY [Group];
 
 SELECT
     TerritoryID,
