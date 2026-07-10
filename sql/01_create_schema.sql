@@ -143,8 +143,8 @@ FROM de_project.stg_sales_order_detail;
 CREATE TABLE de_project.stg_customer
 (
 	CustomerID INT NOT NULL,
-	PersonID INT NOT NULL,
-	StoreID INT NOT NULL,
+	PersonID INT NULL,
+	StoreID INT NULL,
 	TerritoryID INT NOT NULL,
 	AccountNumber VARCHAR(10) NOT NULL
 );
