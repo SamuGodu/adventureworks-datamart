@@ -167,3 +167,22 @@ SELECT
 	AccountNumber
 FROM Sales.Customer;
 GO
+
+-- Validate tables
+-- Row Count
+SELECT COUNT(*) AS row_count_stg
+FROM de_project.stg_customer;
+
+SELECT COUNT(*) AS row_count_src
+FROM Sales.Customer;
+
+-- Check Nulls
+SELECT
+	COUNT(*) as total_rows,
+	SUM(CASE WHEN CustomerID IS NULL THEN 1 ELSE 0 END) AS customer_id_nulls,
+	SUM(CASE WHEN PersonID IS NULL THEN 1 ELSE 0 END) AS person_nulls,
+	SUM(CASE WHEN StoreID IS NULL THEN 1 ELSE 0 END) AS store_nulls,
+	SUM(CASE WHEN TerritoryID IS NULL THEN 1 ELSE 0 END) AS territory_id_nulls,
+	SUM(CASE WHEN AccountNumber IS NULL THEN 1 ELSE 0 END) AS account_number_nulls
+	--SUM(CASE WHEN customer_type IS NULL THEN 1 ELSE 0 END) AS customer_type_nulls
+FROM de_project.stg_customer;
